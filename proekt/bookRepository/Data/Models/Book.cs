@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace bookRepository.Models
@@ -59,6 +60,7 @@ namespace bookRepository.Models
 
 
         [ForeignKey(nameof(Serie))]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? SerieId { get; set; }
         public Serie Serie { get; set; }
 
