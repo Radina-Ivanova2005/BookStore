@@ -21,7 +21,7 @@ namespace bookRepository.Data
         }
 
         public DbSet<Book> Books { get; set; }
-        public DbSet<Autor> Autors { get; set; }
+        public DbSet<Author> Authors { get; set; }
         public DbSet<Publisher> Publishers { get; set;}
         public DbSet<Serie> Series { get; set; }
         public DbSet<Genre> Genres { get; set; }
@@ -39,30 +39,19 @@ namespace bookRepository.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             modelBuilder.Entity<BookGenre>().HasKey(nameof(BookGenre.GenreId), nameof(BookGenre.BookId));
-            modelBuilder.Entity<Book>().Property(m => m.SerieId).IsRequired(false);
-            
-            modelBuilder.Entity<Autor>().Property(b => b.IsDeleted).HasDefaultValue(false);
+            modelBuilder.Entity<Book>().Property(m => m.SerieId).IsRequired(false);          
+            modelBuilder.Entity<Author>().Property(b => b.IsDeleted).HasDefaultValue(false);
             modelBuilder.Entity<Book>().Property(b => b.IsDeleted).HasDefaultValue(false);
             modelBuilder.Entity<Genre>().Property(b => b.IsDeleted).HasDefaultValue(false);
             modelBuilder.Entity<Publisher>().Property(b => b.IsDeleted).HasDefaultValue(false);
             modelBuilder.Entity<Serie>().Property(b => b.IsDeleted).HasDefaultValue(false);
             base.OnModelCreating(modelBuilder);
+           
+
+
+ 
         }
 
-        public override int SaveChanges()
-        {
-            //ChangeTracker.DetectChanges();
-            //foreach (var item in ChangeTracker.Entries<Autor>().Where(e=>e.State==EntityState.Deleted))
-            //{
-            //    item.State = EntityState.Modified;
-            //    item.CurrentValues["IsDeleted"] = true;
-            //}
-            //foreach (var item in ChangeTracker.Entries<Book>().Where(e => e.State == EntityState.Deleted))
-            //{
-            //    item.State = EntityState.Modified;
-            //    item.CurrentValues["IsDeleted"] = true;
-            //}
-            return base.SaveChanges();
-        }
+        
     }
 }

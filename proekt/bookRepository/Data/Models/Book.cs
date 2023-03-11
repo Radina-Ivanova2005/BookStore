@@ -22,7 +22,7 @@ namespace bookRepository.Models
         {
            
             Title = title;
-            AutorId = autorId;
+            AuthorId = autorId;
             SerieId = serieId;
             PublisherId = publisherId;
             Language = language;
@@ -37,7 +37,7 @@ namespace bookRepository.Models
         {
             BookId = bookId;
             Title = title;
-            AutorId = autorId;
+            AuthorId = autorId;
             PublisherId = publisherId;
             Language = language;
             Pages = pages;
@@ -54,20 +54,20 @@ namespace bookRepository.Models
         [Required]
         public string Title { get; set; }
         [Required]
-        [ForeignKey(nameof(Autor))]
-        public int AutorId { get; set; }
-        public Autor Autor { get; set; }
+        [ForeignKey(nameof(Author))]
+        public int AuthorId { get; set; }
+      //  public virtual Author Author { get; set; }
 
 
         [ForeignKey(nameof(Serie))]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? SerieId { get; set; }
-        public Serie Serie { get; set; }
+        //public virtual Serie Serie { get; set; }
 
         [Required]
         [ForeignKey(nameof(Publisher))]
         public int PublisherId { get; set; }
-        public Publisher Publisher { get; set; }
+     //   public virtual Publisher Publisher { get; set; }
         [Required]
         public string Language { get; set; }
         [Required]

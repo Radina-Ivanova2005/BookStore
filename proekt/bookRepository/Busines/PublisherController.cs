@@ -41,7 +41,15 @@ namespace bookRepository.Busines
 
         public void DeletePublisher(int id)
         {
-            var publisherItem = this.GetPublisherById(id);
+            var publisherItem = this.GetPublisherById(id);         
+            BookController bookController = new BookController();
+            var books = bookController.GetBooksByPublisher(publisherItem.Id).ToList();
+            foreach (var book in books)
+            {
+                bookController.DeleteBook(book.BookId);
+                this.context.SaveChanges();
+            }
+
             publisherItem.IsDeleted = true;
             this.context.SaveChanges();
         }

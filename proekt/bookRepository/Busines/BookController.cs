@@ -12,6 +12,7 @@ namespace bookRepository.Busines
     public class BookController
     {
         private BookShopContext context;
+        private AuthorController authorController;
         public BookController()
         {
             context = new BookShopContext();
@@ -20,8 +21,9 @@ namespace bookRepository.Busines
         {
            
             this.context.Books.Add(book);
-          
+                
             this.context.SaveChanges();
+            //authorController.GetAuthorById(book.AuthorId).Books.Add(book);
         }
 
         public Book GetBookById(int id)
@@ -36,9 +38,9 @@ namespace bookRepository.Busines
             return context.Books.Where(x=>x.IsDeleted==false).ToList();
         }
 
-        public List<Book> GetBooksByAutor(int autorId)
+        public List<Book> GetBooksByAuthor(int authorId)
         {
-            var books = context.Books.Where(x => x.AutorId == autorId).ToList();
+            var books = context.Books.Where(x => x.AuthorId == authorId).ToList();
             return books;
         }
 
@@ -113,10 +115,12 @@ namespace bookRepository.Busines
         public void SaleBook(int id)
         {
             var bookItem = this.GetBookById(id);
+            BookController controller = new BookController();
             bookItem.Count--;
             if (bookItem.Count == 0)
             {
-                bookItem.IsDeleted = true;
+                //bookItem.IsDeleted = true;
+                controller.DeleteBook(id);
             }
             this.context.SaveChanges();
         }

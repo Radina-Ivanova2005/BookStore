@@ -43,7 +43,15 @@ namespace bookRepository.Busines
 
         public void DeleteSerie(int id)
         {
-            var serieItem = this.GetSerieById(id);
+            var serieItem = this.GetSerieById(id);           
+            BookController bookController = new BookController();
+            var books = bookController.GetBooksBySerie(serieItem.Id).ToList();
+            foreach (var book in books)
+            {
+                bookController.DeleteBook(book.BookId);
+                this.context.SaveChanges();
+            }
+
             serieItem.IsDeleted = true;
             this.context.SaveChanges();
         }

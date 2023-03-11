@@ -40,12 +40,7 @@ namespace bookRepository.Busines
             this.context.SaveChanges();
         }
 
-        public void DeleteGenre(int id)
-        {
-            var genreItem = this.GetGenreById(id);
-            genreItem.IsDeleted = true;
-            this.context.SaveChanges();
-        }
+        
 
 
     }

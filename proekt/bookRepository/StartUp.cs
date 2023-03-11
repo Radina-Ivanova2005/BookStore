@@ -6,79 +6,75 @@ public class StartUp
 {
     private static void Main(string[] args)
     {
-
        
-
-
-
-
-
+      BookController controller = new BookController();
+        controller.SaleBook(5);
 
 
         //GenreController g = new GenreController();
-        ////Genre g1 = new Genre();
-        ////Genre g2 = new Genre();
-        ////g1.Name = "fantasy";
-        ////g2.Name = "romance";
-        ////g.AddGenre(g1);
-        ////g.AddGenre(g2);
+        //Genre g1 = new Genre();
+        //Genre g2 = new Genre();
+        //g1.Name = "fantasy";
+        //g2.Name = "romance";
+        //g.AddGenre(g1);
+        //g.AddGenre(g2);
 
-        //var a = g.GetGenreById(1);
+        ////var a = g.GetGenreById(1);
 
-        //    Console.WriteLine(a.Name);
-
-
-
-        //AutorController autor = new AutorController();
-        ////Autor a = new Autor();
-
-        ////a.Name = "Sarah";
-        ////a.IsDeleted = false;
+        ////    Console.WriteLine(a.Name);
 
 
-        ////Autor a1 = new Autor();
-        ////a1.IsDeleted = false;
-        ////a1.Name = "Stephanie";
-        ////autor.AddAutor(a);
-        ////autor.AddAutor(a1);
 
-        //var a = autor.GetAutorById(1);
+        //AuthorController autor = new AuthorController();
+        //////Author a = new Author();
 
-        //    Console.WriteLine(a.Name);
+        //////a.Name = "Sarah";
+        //////a.IsDeleted = false;
 
 
-        //PublisherController publisher = new PublisherController();
+        //Author a1 = new Author();
+        //a1.IsDeleted = false;
+        //a1.Name = "Stephanie";
+        //autor.AddAuthor(a1);
+        //autor.AddAuthor(a);
+
+        //////var a = autor.GetAuthorById(1);
+
+        //////    Console.WriteLine(a.Name);
+
+
+        ////PublisherController publisher = new PublisherController();
         ////Publisher p = new Publisher();
         ////p.Name = "a";
         ////publisher.AddPublisher(p);
         ////Publisher p1 = new Publisher();
         ////p1.Name = "b";
         ////publisher.AddPublisher(p1);
-        //var a=publisher.GetAllPublisherss();
-        //foreach (var item in a)
-        //{
-        //    Console.WriteLine(item.Name);
-        //}
+        //////var a=publisher.GetAllPublisherss();
+        //////foreach (var item in a)
+        //////{
+        //////    Console.WriteLine(item.Name);
+        //////}
 
 
         //SerieController serieController = new SerieController();
-        ////Serie s = new Serie();
-        ////s.Title = "acotar";
-        ////serieController.AddSerie(s);
-        ////Serie s1 = new Serie();
-        ////s1.Title = "Caraval";
-        ////serieController.AddSerie(s1);
-        //var a=serieController.GetAllSeries();
-        //foreach (var item in a)
-        //{
-        //    Console.WriteLine(item.Title);
-        //}
+        //Serie s = new Serie();
+        //s.Title = "acotar";
+        //serieController.AddSerie(s);
+        //////Serie s1 = new Serie();
+        //////s1.Title = "Caraval";
+        //////serieController.AddSerie(s1);
+        //////var a=serieController.GetAllSeries();
+        //////foreach (var item in a)
+        //////{
+        //////    Console.WriteLine(item.Title);
+        //////}
 
-
+        //BookController bookController = new BookController();
         //Book b = new Book();
         //b.Title = "acotar";
-        //b.AutorId = 1;
-        //b.SerieId = 1;
+        //b.AuthorId = 7;
+        //b.SerieId = 2;
         //b.PublisherId = 1;
         //b.Pages = 555;
         //b.Price = 12.20M;
@@ -88,7 +84,7 @@ public class StartUp
         //b.IsDeleted = false;
         //Book b1 = new Book();
         //b1.Title = "caraval";
-        //b1.AutorId = 1;
+        //b1.AuthorId = 7;
         //b1.SerieId = 2;
         //b1.PublisherId = 2;
         //b1.Pages = 525;
