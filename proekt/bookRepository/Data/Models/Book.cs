@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using bookRepository.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,33 +19,37 @@ namespace bookRepository.Models
         {
             
         }
-        public Book(string title, int autorId,  int serieId,  int publisherId, string language, int pages, decimal price, int rating, int count, bool isDeleted)
-        {
-           
-            Title = title;
-            AuthorId = autorId;
-            SerieId = serieId;
-            PublisherId = publisherId;
-            Language = language;
-            Pages = pages;
-            Price = price;
-            Rating = rating;
-            Count = count;
-            IsDeleted = isDeleted;
-        }
-
-        public Book(int bookId, string title, int autorId, int publisherId, string language, int pages, decimal price, int rating, int count)
+        public Book(int bookId, string title, int autorId, int publisherId, int genreId, int categoryId, string language, int pages, decimal price, int rating, int count)
         {
             BookId = bookId;
             Title = title;
             AuthorId = autorId;
             PublisherId = publisherId;
+            GenreId = genreId;
+            CategoryId = categoryId;
             Language = language;
             Pages = pages;
             Price = price;
             Rating = rating;
             Count = count;
-            IsDeleted = false;
+
+        }
+
+        public Book(int bookId, string title, int autorId,int serieId, int publisherId, int genreId, int categoryId, string language, int pages, decimal price, int rating, int count)
+        {
+            BookId = bookId;
+            Title = title;
+            AuthorId = autorId;
+            SerieId= serieId;
+            PublisherId = publisherId;
+            GenreId = genreId;
+            CategoryId = categoryId;
+            Language = language;
+            Pages = pages;
+            Price = price;
+            Rating = rating;
+            Count = count;
+            
         }
 
         [Key]
@@ -56,18 +61,28 @@ namespace bookRepository.Models
         [Required]
         [ForeignKey(nameof(Author))]
         public int AuthorId { get; set; }
-      //  public virtual Author Author { get; set; }
+        public  Author Author { get; set; }
 
 
         [ForeignKey(nameof(Serie))]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? SerieId { get; set; }
-        //public virtual Serie Serie { get; set; }
+        public  Serie Serie { get; set; }
 
         [Required]
         [ForeignKey(nameof(Publisher))]
         public int PublisherId { get; set; }
-     //   public virtual Publisher Publisher { get; set; }
+        public  Publisher Publisher { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(Genre))]
+        public int GenreId { get; set; }
+        public Genre Genre { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(Category))]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
         [Required]
         public string Language { get; set; }
         [Required]
@@ -80,9 +95,9 @@ namespace bookRepository.Models
         [Required]
         public int Count { get; set; }
 
-        public bool IsDeleted { get; set; } 
+       
 
-        public ICollection<BookGenre> BookGenres { get; }
+       
 
     }
 }

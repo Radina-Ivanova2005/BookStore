@@ -25,12 +25,12 @@ namespace bookRepository.Busines
 
         public List<Serie> GetAllSeries()
         {
-            return context.Series.Where(x => x.IsDeleted == false).ToList();
+            return context.Series.ToList();
         }
 
         public Serie GetSerieById(int id)
         {
-            var serie = this.context.Series.FirstOrDefault(x => x.Id == id && x.IsDeleted == false);
+            var serie = this.context.Series.FirstOrDefault(x => x.Id == id);
             return serie;
         }
         public void UpdateSerie(Serie serie)
@@ -43,16 +43,8 @@ namespace bookRepository.Busines
 
         public void DeleteSerie(int id)
         {
-            var serieItem = this.GetSerieById(id);           
-            BookController bookController = new BookController();
-            var books = bookController.GetBooksBySerie(serieItem.Id).ToList();
-            foreach (var book in books)
-            {
-                bookController.DeleteBook(book.BookId);
-                this.context.SaveChanges();
-            }
-
-            serieItem.IsDeleted = true;
+            var serieItem = this.GetSerieById(id);
+            this.context.Series.Remove(serieItem);
             this.context.SaveChanges();
         }
     }

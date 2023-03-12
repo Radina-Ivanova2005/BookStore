@@ -20,11 +20,11 @@ namespace bookRepository.Busines
 
         public List<Author> GetAllAuthors()
         {
-            return context.Authors.Where(x => x.IsDeleted == false).ToList();
+            return context.Authors.ToList();
         }
         public Author GetAuthorById(int id)
         {
-            var author = this.context.Authors.FirstOrDefault(x => x.Id == id && x.IsDeleted == false);
+            var author = this.context.Authors.FirstOrDefault(x => x.Id == id);
             return author;
         }
         public void UpdateAuthor(Author author)
@@ -37,17 +37,8 @@ namespace bookRepository.Busines
         public void DeleteAuthor(int id)
         {
             var authorItem = this.GetAuthorById(id);
-            BookController bookController = new BookController();
-            var books = bookController.GetBooksByAuthor(authorItem.Id).ToList();
-            foreach (var book in books)
-            {
-                bookController.DeleteBook(book.BookId);
-                this.context.SaveChanges();
-            }
-
-            authorItem.IsDeleted = true;
-            this.context.SaveChanges();
-
+            this.context.Authors.Remove(authorItem);
+            this.context.SaveChanges(); 
         }
 
 

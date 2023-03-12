@@ -24,12 +24,12 @@ namespace bookRepository.Busines
 
         public List<Publisher> GetAllPublisherss()
         {
-            return context.Publishers.Where(x=> x.IsDeleted == false).ToList();
+            return context.Publishers.ToList();
         }
 
         public Publisher GetPublisherById(int id)
         {
-            var publisher = this.context.Publishers.FirstOrDefault(x => x.Id == id && x.IsDeleted == false);
+            var publisher = this.context.Publishers.FirstOrDefault(x => x.Id == id);
             return publisher;
         }
         public void UpdatePublisher(Publisher publisher)
@@ -41,16 +41,8 @@ namespace bookRepository.Busines
 
         public void DeletePublisher(int id)
         {
-            var publisherItem = this.GetPublisherById(id);         
-            BookController bookController = new BookController();
-            var books = bookController.GetBooksByPublisher(publisherItem.Id).ToList();
-            foreach (var book in books)
-            {
-                bookController.DeleteBook(book.BookId);
-                this.context.SaveChanges();
-            }
-
-            publisherItem.IsDeleted = true;
+            var publisherItem = this.GetPublisherById(id);
+            this.context.Publishers.Remove(publisherItem);
             this.context.SaveChanges();
         }
     }

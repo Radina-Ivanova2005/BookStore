@@ -23,14 +23,14 @@ namespace bookRepository.Busines
             this.context.SaveChanges();
         }
 
-        //public List<Genre> GetAllGenres()
-        //{
-        //    return context.Genres.Where(x=> x.IsDeleted == false).ToList();
-        //}
+        public List<Genre> GetAllGenres()
+        {
+            return context.Genres.ToList();
+        }
 
         public Genre GetGenreById(int id)
         {
-            var genre = this.context.Genres.FirstOrDefault(x => x.Id == id && x.IsDeleted == false);
+            var genre = this.context.Genres.FirstOrDefault(x => x.Id == id );
             return genre;
         }
         public void UpdateGenre(Genre genre)
@@ -40,7 +40,15 @@ namespace bookRepository.Busines
             this.context.SaveChanges();
         }
 
-        
+        public void DeleteGenre(int id)
+        {
+            var genreItem = this.GetGenreById(id);
+            this.context.Genres.Remove(genreItem);
+            this.context.SaveChanges();
+
+        }
+
+
 
 
     }

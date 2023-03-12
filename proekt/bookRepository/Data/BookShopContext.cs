@@ -1,8 +1,10 @@
-﻿using bookRepository.Models;
+﻿using bookRepository.Data.Models;
+using bookRepository.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +27,7 @@ namespace bookRepository.Data
         public DbSet<Publisher> Publishers { get; set;}
         public DbSet<Serie> Series { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<BookGenre> BooksGenres { get; set; }
+        public DbSet<Category> Categories { get; set; } 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -38,18 +40,13 @@ namespace bookRepository.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
-            modelBuilder.Entity<BookGenre>().HasKey(nameof(BookGenre.GenreId), nameof(BookGenre.BookId));
-            modelBuilder.Entity<Book>().Property(m => m.SerieId).IsRequired(false);          
-            modelBuilder.Entity<Author>().Property(b => b.IsDeleted).HasDefaultValue(false);
-            modelBuilder.Entity<Book>().Property(b => b.IsDeleted).HasDefaultValue(false);
-            modelBuilder.Entity<Genre>().Property(b => b.IsDeleted).HasDefaultValue(false);
-            modelBuilder.Entity<Publisher>().Property(b => b.IsDeleted).HasDefaultValue(false);
-            modelBuilder.Entity<Serie>().Property(b => b.IsDeleted).HasDefaultValue(false);
-            base.OnModelCreating(modelBuilder);
            
+            modelBuilder.Entity<Book>().Property(m => m.SerieId).IsRequired(false);
 
-
- 
+            modelBuilder.Entity<Serie>()
+                 .HasMany(m => m.Books)
+                 .WithOne(e => e.Serie)
+                 .OnDelete(DeleteBehavior.Cascade);
         }
 
         

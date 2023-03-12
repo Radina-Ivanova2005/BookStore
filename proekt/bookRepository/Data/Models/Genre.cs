@@ -18,7 +18,7 @@ namespace bookRepository.Models
         {
            
             Name = name;
-            IsDeleted = false;
+           
         }
 
         [Key]
@@ -28,8 +28,8 @@ namespace bookRepository.Models
         [MaxLength(20)]
         public string Name { get; set; }
 
-        public bool IsDeleted { get; set; } 
+       
 
-        public ICollection<BookGenre> BookGenres { get; set; }
+      
     }
 }
