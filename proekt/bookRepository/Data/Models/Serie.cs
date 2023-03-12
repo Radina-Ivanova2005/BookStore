@@ -16,10 +16,7 @@ namespace bookRepository.Models
         }
         public Serie(string title)
         {
-            
-            Title = title;
-           
-            
+            Title = title;          
         }
 
         [Key]

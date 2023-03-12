@@ -17,8 +17,7 @@ namespace bookRepository.Models
         }
         public Author( string name)
         {         
-            Name = name;
-            
+            Name = name;           
         }
 
         [Key]
@@ -28,8 +27,5 @@ namespace bookRepository.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-       
-        
-        //public ICollection<Book> Books { get; set; }
     }
 }

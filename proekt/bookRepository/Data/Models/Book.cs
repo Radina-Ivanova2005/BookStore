@@ -16,8 +16,8 @@ namespace bookRepository.Models
     public class Book
     {
         public Book()
-        {
-            
+        {      
+        
         }
         public Book(int bookId, string title, int autorId, int publisherId, int genreId, int categoryId, string language, int pages, decimal price, int rating, int count)
         {
@@ -32,7 +32,6 @@ namespace bookRepository.Models
             Price = price;
             Rating = rating;
             Count = count;
-
         }
 
         public Book(int bookId, string title, int autorId,int serieId, int publisherId, int genreId, int categoryId, string language, int pages, decimal price, int rating, int count)
@@ -48,8 +47,7 @@ namespace bookRepository.Models
             Pages = pages;
             Price = price;
             Rating = rating;
-            Count = count;
-            
+            Count = count;           
         }
 
         [Key]

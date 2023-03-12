@@ -15,10 +15,8 @@ namespace bookRepository.Models
             
         }
         public Publisher( string name)
-        {
-           
-            Name = name;
-           
+        {          
+            Name = name;          
         }
 
         [Key]

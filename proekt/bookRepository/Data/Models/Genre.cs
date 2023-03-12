@@ -15,10 +15,8 @@ namespace bookRepository.Models
             
         }
         public Genre( string name)
-        {
-           
-            Name = name;
-           
+        { 
+            Name = name;          
         }
 
         [Key]

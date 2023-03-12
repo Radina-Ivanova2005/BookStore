@@ -22,7 +22,7 @@ namespace bookRepository.Busines
             this.context.SaveChanges();
         }
 
-        public List<Publisher> GetAllPublisherss()
+        public List<Publisher> GetAllPublishers()
         {
             return context.Publishers.ToList();
         }

@@ -23,7 +23,7 @@ namespace bookRepository.Busines
             this.context.SaveChanges();
         }
 
-        public List<Category> GetAllGenres()
+        public List<Category> GetAllCategories()
         {
             return context.Categories.ToList();
         }
