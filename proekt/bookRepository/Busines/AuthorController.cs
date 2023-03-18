@@ -16,12 +16,12 @@ namespace bookRepository.Busines
         {
             this.context.Authors.Add(author);
             this.context.SaveChanges();
-            
+
         }
 
         public List<Author> GetAllAuthors()
         {
-            return context.Authors.OrderBy(a=>a.Name).ToList();
+            return context.Authors.OrderBy(a => a.Name).ToList();
         }
         public Author GetAuthorById(int id)
         {
@@ -45,10 +45,10 @@ namespace bookRepository.Busines
         {
             var authorItem = this.GetAuthorById(id);
             this.context.Authors.Remove(authorItem);
-            this.context.SaveChanges(); 
+            this.context.SaveChanges();
         }
 
 
-        
+
     }
 }
