@@ -11,14 +11,13 @@ namespace bookRepository.Views
 {
     public class PublisherDisplay
     {
-        private PublisherController controller;
+        private PublisherController controller = new PublisherController(new Data.BookShopContext());
         public PublisherDisplay()
         {
-            controller = new PublisherController();
             Input();
         }
 
-        private int closeOperationId = 6;
+        private int closeOperationId = 7;
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -30,8 +29,9 @@ namespace bookRepository.Views
             Console.WriteLine("2. Add new publisher");
             Console.WriteLine("3. Update publisher");
             Console.WriteLine("4. Fetch publisher by ID");
-            Console.WriteLine("5. Delete publisher by ID");
-            Console.WriteLine("6. Close");
+            Console.WriteLine("5. Fetch publisher by Name");
+            Console.WriteLine("6. Delete publisher by ID");
+            Console.WriteLine("7. Close");
         }
 
         private void Input()
@@ -46,8 +46,9 @@ namespace bookRepository.Views
                     case 1: List(); break;
                     case 2: Add(); break;
                     case 3: Update(); break;
-                    case 4: Fetch(); break;
-                    case 5: Delete(); break;
+                    case 4: FetchById(); break;
+                    case 5: FetchByName(); break;
+                    case 6: Delete(); break;
                     default:
                         break;
                 }
@@ -62,11 +63,24 @@ namespace bookRepository.Views
             Console.WriteLine("Done.");
         }
 
-        private void Fetch()
+        private void FetchById()
         {
             Console.WriteLine("Enter ID to fetch: ");
             int id = int.Parse(Console.ReadLine());
             Publisher publisher = controller.GetPublisherById(id);
+            if (publisher != null)
+            {
+                Console.WriteLine(new string('-', 40));
+                Console.WriteLine("ID: " + publisher.Id);
+                Console.WriteLine("Name: " + publisher.Name);
+                Console.WriteLine(new string('-', 40));
+            }
+        }
+        private void FetchByName()
+        {
+            Console.WriteLine("Enter name to fetch: ");
+            string name = Console.ReadLine();
+            Publisher publisher = controller.GetPublisherByName(name);
             if (publisher != null)
             {
                 Console.WriteLine(new string('-', 40));

@@ -1,4 +1,5 @@
 ﻿using bookRepository.Data;
+using bookRepository.Data.Models;
 using bookRepository.Models;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace bookRepository.Busines
     public class SerieController
     {
         private BookShopContext context;
-        public SerieController()
+        public SerieController(BookShopContext context)
         {
-            context = new BookShopContext();
+            this.context = context;
         }
 
 
@@ -25,7 +26,7 @@ namespace bookRepository.Busines
 
         public List<Serie> GetAllSeries()
         {
-            return context.Series.ToList();
+            return context.Series.OrderBy(s=>s.Title).ToList();
         }
 
         public Serie GetSerieById(int id)
@@ -33,6 +34,13 @@ namespace bookRepository.Busines
             var serie = this.context.Series.FirstOrDefault(x => x.Id == id);
             return serie;
         }
+
+        public Serie GetSerieByTitle(string title)
+        {
+            var serie = this.context.Series.FirstOrDefault(x => x.Title== title);
+            return serie;
+        }
+
         public void UpdateSerie(Serie serie)
         {
             var serieItem = this.GetSerieById(serie.Id);

@@ -12,10 +12,12 @@ namespace bookRepository.Busines
     public  class CategoryController
     {
         private BookShopContext context;
-        public CategoryController()
+        public CategoryController(BookShopContext context)
         {
-            context = new BookShopContext();
+            this.context = context;
         }
+
+        
 
         public void AddCategory(Category category)
         {
@@ -25,12 +27,18 @@ namespace bookRepository.Busines
 
         public List<Category> GetAllCategories()
         {
-            return context.Categories.ToList();
+            return context.Categories.OrderBy(c=>c.Name).ToList();
         }
 
         public Category GetCategoryById(int id)
         {
             var category = this.context.Categories.FirstOrDefault(x => x.Id == id);
+            return category;
+        }
+
+        public Category GetCategoryByName(string name)
+        {
+            var category = this.context.Categories.FirstOrDefault(x => x.Name == name);
             return category;
         }
         public void UpdateCategory(Category category)
@@ -44,6 +52,13 @@ namespace bookRepository.Busines
         public void DeleteCategory(int id)
         {
             var categoryItem = this.GetCategoryById(id);
+            this.context.Categories.Remove(categoryItem);
+            this.context.SaveChanges();
+        }
+
+        public void DeleteCategory(Category category)
+        {
+            var categoryItem = this.GetCategoryById(category.Id);
             this.context.Categories.Remove(categoryItem);
             this.context.SaveChanges();
         }

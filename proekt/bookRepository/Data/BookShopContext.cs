@@ -22,12 +22,14 @@ namespace bookRepository.Data
 
         }
 
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Publisher> Publishers { get; set;}
-        public DbSet<Serie> Series { get; set; }
-        public DbSet<Genre> Genres { get; set; }
-        public DbSet<Category> Categories { get; set; } 
+        public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
+        public virtual DbSet<Publisher> Publishers { get; set;}
+        public virtual DbSet<Serie> Series { get; set; }
+        public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Category> Categories { get; set; } 
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

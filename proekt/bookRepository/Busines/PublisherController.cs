@@ -1,4 +1,5 @@
 ﻿using bookRepository.Data;
+using bookRepository.Data.Models;
 using bookRepository.Models;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace bookRepository.Busines
     public class PublisherController
     {
         private BookShopContext context;
-        public PublisherController()
+        public PublisherController(BookShopContext context)
         {
-            context = new BookShopContext();
+            this.context = context;
         }
 
         public void AddPublisher(Publisher publisher)
@@ -24,12 +25,18 @@ namespace bookRepository.Busines
 
         public List<Publisher> GetAllPublishers()
         {
-            return context.Publishers.ToList();
+            return context.Publishers.OrderBy(p=>p.Name).ToList();
         }
 
         public Publisher GetPublisherById(int id)
         {
             var publisher = this.context.Publishers.FirstOrDefault(x => x.Id == id);
+            return publisher;
+        }
+
+        public Publisher GetPublisherByName(string name)
+        {
+            var publisher = this.context.Publishers.FirstOrDefault(x => x.Name == name);
             return publisher;
         }
         public void UpdatePublisher(Publisher publisher)

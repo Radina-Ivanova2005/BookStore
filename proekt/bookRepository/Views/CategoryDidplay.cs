@@ -10,14 +10,13 @@ namespace bookRepository.Views
 {
     public class CategoryDidplay
     {
-        private CategoryController controller;
+        private CategoryController controller= new CategoryController(new Data.BookShopContext());
         public CategoryDidplay() 
         {
-            controller = new CategoryController();
             Input();
         }
 
-        private int closeOperationId = 6;
+        private int closeOperationId = 7;
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -29,8 +28,9 @@ namespace bookRepository.Views
             Console.WriteLine("2. Add new category");
             Console.WriteLine("3. Update category");
             Console.WriteLine("4. Fetch category by ID");
-            Console.WriteLine("5. Delete category by ID");
-            Console.WriteLine("6. Close");
+            Console.WriteLine("5. Fetch category by name");
+            Console.WriteLine("6. Delete category by ID");
+            Console.WriteLine("7. Close");
         }
 
         private void Input()
@@ -45,8 +45,9 @@ namespace bookRepository.Views
                     case 1: List(); break;
                     case 2: Add(); break;
                     case 3: Update(); break;
-                    case 4: Fetch(); break;
-                    case 5: Delete(); break;
+                    case 4: FetchById(); break;
+                    case 5: FetchByName(); break;
+                    case 6: Delete(); break;
                     default:
                         break;
                 }
@@ -61,16 +62,30 @@ namespace bookRepository.Views
             Console.WriteLine("Done.");
         }
 
-        private void Fetch()
+        private void FetchById()
         {
             Console.WriteLine("Enter ID to fetch: ");
             int id = int.Parse(Console.ReadLine());
-            Category product = controller.GetCategoryById(id);
-            if (product != null)
+            Category category = controller.GetCategoryById(id);
+            if (category != null)
             {
                 Console.WriteLine(new string('-', 40));
-                Console.WriteLine("ID: " + product.Id);
-                Console.WriteLine("Name: " + product.Name);
+                Console.WriteLine("ID: " + category.Id);
+                Console.WriteLine("Name: " + category.Name);
+                Console.WriteLine(new string('-', 40));
+            }
+        }
+
+        private void FetchByName()
+        {
+            Console.WriteLine("Enter name to fetch: ");
+            string name = Console.ReadLine();
+            Category category = controller.GetCategoryByName(name);
+            if (category != null)
+            {
+                Console.WriteLine(new string('-', 40));
+                Console.WriteLine("ID: " + category.Id);
+                Console.WriteLine("Name: " + category.Name);
                 Console.WriteLine(new string('-', 40));
             }
         }

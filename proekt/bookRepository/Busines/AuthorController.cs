@@ -1,4 +1,5 @@
 ﻿using bookRepository.Data;
+using bookRepository.Data.Models;
 using bookRepository.Models;
 
 namespace bookRepository.Busines
@@ -6,9 +7,9 @@ namespace bookRepository.Busines
     public class AuthorController
     {
         private BookShopContext context;
-        public AuthorController()
+        public AuthorController(BookShopContext context)
         {
-            context = new BookShopContext();
+            this.context = context;
         }
 
         public void AddAuthor(Author author)
@@ -20,11 +21,17 @@ namespace bookRepository.Busines
 
         public List<Author> GetAllAuthors()
         {
-            return context.Authors.ToList();
+            return context.Authors.OrderBy(a=>a.Name).ToList();
         }
         public Author GetAuthorById(int id)
         {
             var author = this.context.Authors.FirstOrDefault(x => x.Id == id);
+            return author;
+        }
+
+        public Author GetAuthorByName(string name)
+        {
+            var author = this.context.Authors.FirstOrDefault(x => x.Name == name);
             return author;
         }
         public void UpdateAuthor(Author author)

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace bookRepository.Views
 {
-    internal class GenreDisplay
+    public class GenreDisplay
     {
+        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using bookRepository.Data;
+using bookRepository.Data.Models;
 using bookRepository.Models;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace bookRepository.Busines
     {
 
         private BookShopContext context;
-        public GenreController()
+        public GenreController(BookShopContext context)
         {
-            context = new BookShopContext();
+            this.context = context;
         }
 
         public void AddGenre(Genre genre)
@@ -25,12 +26,18 @@ namespace bookRepository.Busines
 
         public List<Genre> GetAllGenres()
         {
-            return context.Genres.ToList();
+            return context.Genres.OrderBy(g=>g.Name).ToList();
         }
 
         public Genre GetGenreById(int id)
         {
             var genre = this.context.Genres.FirstOrDefault(x => x.Id == id );
+            return genre;
+        }
+
+        public Genre GetGenreByName(string name)
+        {
+            var genre = this.context.Genres.FirstOrDefault(x => x.Name == name);
             return genre;
         }
         public void UpdateGenre(Genre genre)

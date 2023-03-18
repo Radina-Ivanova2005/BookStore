@@ -13,9 +13,9 @@ namespace bookRepository.Busines
     {
         private BookShopContext context;
         private AuthorController authorController;
-        public BookController()
+        public BookController(BookShopContext context)
         {
-            context = new BookShopContext();
+            this.context = context;
         }
         public void AddBook(Book book)
         {
@@ -35,78 +35,78 @@ namespace bookRepository.Busines
 
         public List<Book> GetAllBooks()
         {
-            return context.Books.ToList();
+            return context.Books.OrderBy(b=>b.Title).ToList();
         }
 
         public List<Book> GetBooksByAuthor(int authorId)
         {
-            var books = context.Books.Where(x => x.AuthorId == authorId).ToList();
+            var books = context.Books.Where(x => x.AuthorId == authorId).OrderBy(b=>b.Title).ToList();
             return books;
         }
 
         public List<Book> GetBooksBySerie(int serieId)
         {
-            var books = context.Books.Where(x => x.SerieId.Equals(serieId)).ToList();
+            var books = context.Books.Where(x => x.SerieId.Equals(serieId)).OrderBy(b => b.Title).ToList();
             return books;
         }
 
         public List<Book> GetBooksByPublisher(int publisherId)
         {
-            var books = context.Books.Where(x => x.PublisherId.Equals(publisherId)).ToList();
+            var books = context.Books.Where(x => x.PublisherId.Equals(publisherId)).OrderBy(b=>b.Title).ToList();
             return books;
         }
 
         public List<Book> GetBooksByGenre(int genreId)
         {
-            var books = context.Books.Where(x => x.GenreId.Equals(genreId)).ToList();
+            var books = context.Books.Where(x => x.GenreId.Equals(genreId)).OrderBy(b => b.Title).ToList();
             return books;
         }
 
         public List<Book> GetBooksByCategory(int categoryId)
         {
-            var books = context.Books.Where(x => x.CategoryId.Equals(categoryId) ).ToList();
+            var books = context.Books.Where(x => x.CategoryId.Equals(categoryId)).OrderBy(b => b.Title).ToList();
             return books;
         }
 
         public List<Book> GetBooksWithLessPages(int pages)
         {
-            var books = context.Books.Where(x => x.Pages <= pages).ToList();
+            var books = context.Books.Where(x => x.Pages <= pages).OrderBy(b=>b.Pages).ToList();
             return books;
         }
 
         public List<Book> GetBooksWithMorePages(int pages)
         {
-            var books = context.Books.Where(x => x.Pages >= pages).ToList();
+            var books = context.Books.Where(x => x.Pages >= pages).OrderBy(b => b.Pages).ToList();
             return books;
         }
 
         public List<Book> GetBooksWithLessPrice(decimal price)
         {
-            var books = context.Books.Where(x => x.Price <= price).ToList();
+            var books = context.Books.Where(x => x.Price <= price).OrderBy(b=>b.Price).ToList();
             return books;
         }
 
         public List<Book> GetBooksWithBiggerPrice(decimal price)
         {
-            var books = context.Books.Where(x => x.Price >= price ).ToList();
+            var books = context.Books.Where(x => x.Price >= price ).OrderBy(b=>b.Price).ToList();
             return books;
         }
 
-        public List<Book> GetBooksWithTitle(string title)
+        public Book GetBooksWithTitle(string title)
         {
-            var books = context.Books.Where(x => x.Title.Equals(title) ).ToList();
-            return books;
+            var book = context.Books.FirstOrDefault(x => x.Title.Equals(title));
+            return book;
         }
 
         public List<Book> GetBooksWithLanguage(string language)
         {
-            var books = context.Books.Where(x => x.Language.Equals(language)).ToList();
+            var books = context.Books.Where(x => x.Language.Equals(language)).OrderBy(b=>b.Title).ToList();
             return books;
         }
 
         public List<Book> GetBooksWithRating(int rating)
         {
-            var books = context.Books.Where(x => x.Rating == rating).ToList();
+            var books = context.Books.Where(x => x.Rating == rating).OrderBy(b=>b.Title).ToList();
             return books;
         }
 
@@ -127,7 +127,6 @@ namespace bookRepository.Busines
         public void SaleBook(int id)
         {
             var bookItem = this.GetBookById(id);
-            BookController controller = new BookController();
             bookItem.Count--;
             if (bookItem.Count == 0)
             {

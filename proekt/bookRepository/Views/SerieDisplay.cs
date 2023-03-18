@@ -11,14 +11,13 @@ namespace bookRepository.Views
 {
     public class SerieDisplay
     {
-        private SerieController controller;
+        private SerieController controller = new SerieController(new Data.BookShopContext());
         public SerieDisplay()
         {
-            controller = new SerieController();
             Input();
         }
 
-        private int closeOperationId = 6;
+        private int closeOperationId = 7;
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -30,8 +29,9 @@ namespace bookRepository.Views
             Console.WriteLine("2. Add new serie");
             Console.WriteLine("3. Update serie");
             Console.WriteLine("4. Fetch serie by ID");
-            Console.WriteLine("5. Delete serie by ID");
-            Console.WriteLine("6. Close");
+            Console.WriteLine("5. Fetch serie by name");
+            Console.WriteLine("6. Delete serie by ID");
+            Console.WriteLine("7. Close");
         }
 
         private void Input()
@@ -46,8 +46,9 @@ namespace bookRepository.Views
                     case 1: List(); break;
                     case 2: Add(); break;
                     case 3: Update(); break;
-                    case 4: Fetch(); break;
-                    case 5: Delete(); break;
+                    case 4: FetchById(); break;
+                    case 5: FetchByName(); break;
+                    case 6: Delete(); break;
                     default:
                         break;
                 }
@@ -62,7 +63,7 @@ namespace bookRepository.Views
             Console.WriteLine("Done.");
         }
 
-        private void Fetch()
+        private void FetchById()
         {
             Console.WriteLine("Enter ID to fetch: ");
             int id = int.Parse(Console.ReadLine());
@@ -75,6 +76,22 @@ namespace bookRepository.Views
                 Console.WriteLine(new string('-', 40));
             }
         }
+
+        private void FetchByName()
+        {
+            Console.WriteLine("Enter name to fetch: ");
+            string title=Console.ReadLine();
+            Serie serie = controller.GetSerieByTitle(title);
+            if (serie != null)
+            {
+                Console.WriteLine(new string('-', 40));
+                Console.WriteLine("ID: " + serie.Id);
+                Console.WriteLine("Name: " + serie.Title);
+                Console.WriteLine(new string('-', 40));
+            }
+        }
+
+
 
         private void Update()
         {
