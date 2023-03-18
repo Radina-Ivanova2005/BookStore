@@ -12,11 +12,11 @@ namespace bookRepository.Models
     {
         public Publisher()
         {
-            
+
         }
-        public Publisher( string name)
-        {          
-            Name = name;          
+        public Publisher(string name)
+        {
+            Name = name;
         }
 
         [Key]
@@ -26,7 +26,7 @@ namespace bookRepository.Models
         [MaxLength(30)]
         public string Name { get; set; }
 
-       
-        
+
+
     }
 }
