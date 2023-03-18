@@ -13,11 +13,11 @@ namespace bookRepository.Models
     {
         public Author()
         {
-            
+
         }
-        public Author( string name)
-        {         
-            Name = name;           
+        public Author(string name)
+        {
+            Name = name;
         }
 
         [Key]
