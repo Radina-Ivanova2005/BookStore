@@ -68,7 +68,7 @@ namespace bookRepository.Views
             if (author != null)
             {
                 Console.WriteLine(new string('-', 40));
-                Console.WriteLine("ID: " +  author.Id);
+                Console.WriteLine("ID: " + author.Id);
                 Console.WriteLine("Name: " + author.Name);
                 Console.WriteLine(new string('-', 40));
             }
