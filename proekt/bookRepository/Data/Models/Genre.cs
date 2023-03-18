@@ -12,11 +12,11 @@ namespace bookRepository.Models
     {
         public Genre()
         {
-            
+
         }
-        public Genre( string name)
-        { 
-            Name = name;          
+        public Genre(string name)
+        {
+            Name = name;
         }
 
         [Key]
@@ -26,8 +26,8 @@ namespace bookRepository.Models
         [MaxLength(20)]
         public string Name { get; set; }
 
-       
 
-      
+
+
     }
 }
