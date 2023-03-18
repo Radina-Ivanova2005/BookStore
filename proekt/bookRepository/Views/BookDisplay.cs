@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace bookRepository.Views
 {
-    internal class BookDisplay
+    public class BookDisplay
     {
         private BookController controller = new BookController(new Data.BookShopContext());
         public BookDisplay()

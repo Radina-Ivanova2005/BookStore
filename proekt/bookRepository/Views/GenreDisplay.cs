@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace bookRepository.Views
 {
-    internal class GenreDisplay
+    public class GenreDisplay
     {
         private GenreController controller = new GenreController(new Data.BookShopContext());
         public GenreDisplay()
