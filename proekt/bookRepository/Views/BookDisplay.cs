@@ -1,13 +1,6 @@
-﻿using Azure;
-using bookRepository.Data;
-using bookRepository.Busines;
-using bookRepository.Data.Models;
+﻿using bookRepository.Busines;
 using bookRepository.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace bookRepository.Views
 {
