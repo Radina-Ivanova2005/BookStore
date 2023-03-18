@@ -3,7 +3,7 @@ using bookRepository.Data;
 using bookRepository.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-
+using NUnit.Framework;
 
 namespace BookShop.Tests
 {
