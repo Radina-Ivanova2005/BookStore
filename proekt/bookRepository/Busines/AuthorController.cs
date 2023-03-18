@@ -1,5 +1,5 @@
 ﻿using bookRepository.Data;
-using bookRepository.Data.Models;
+
 using bookRepository.Models;
 
 namespace bookRepository.Busines
