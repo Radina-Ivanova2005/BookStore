@@ -110,7 +110,7 @@ namespace bookRepository.Busines
             return books;
         }
 
-        public void UpdateBook(Book book, int genreId)
+        public void UpdateBook(Book book)
         {
             var bookItem = this.GetBookById(book.BookId);        
             this.context.Entry(bookItem).CurrentValues.SetValues(book);
