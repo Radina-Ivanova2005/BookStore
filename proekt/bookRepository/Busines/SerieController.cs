@@ -17,30 +17,34 @@ namespace bookRepository.Busines
             this.context = context;
         }
 
-
+        //Added serie to the database 
         public void AddSerie(Serie serie)
         {
             this.context.Series.Add(serie);
             this.context.SaveChanges();
         }
 
+        //Fetch list of series from the database
         public List<Serie> GetAllSeries()
         {
             return context.Series.OrderBy(s=>s.Title).ToList();
         }
 
+        //Fetch certain sserie from the database by ID
         public Serie GetSerieById(int id)
         {
             var serie = this.context.Series.FirstOrDefault(x => x.Id == id);
             return serie;
         }
 
+        //Fetch certain serie from the database by name
         public Serie GetSerieByTitle(string title)
         {
             var serie = this.context.Series.FirstOrDefault(x => x.Title== title);
             return serie;
         }
 
+        //Update certain serie from the database with new serie characteristics
         public void UpdateSerie(Serie serie)
         {
             var serieItem = this.GetSerieById(serie.Id);
@@ -48,7 +52,7 @@ namespace bookRepository.Busines
             this.context.SaveChanges();
         }
 
-
+        //Delete certain serie from the database bi ID
         public void DeleteSerie(int id)
         {
             var serieItem = this.GetSerieById(id);
