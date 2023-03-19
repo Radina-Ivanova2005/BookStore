@@ -9,16 +9,11 @@ namespace bookRepository.Views
         private BookController controller = new BookController(new Data.BookShopContext());
         public BookDisplay()
         {
-            
+
             Input();
         }
 
-        private int closeOperationId = 17;
-        private AuthorController authorController;
-        private CategoryController categoryController;
-        private GenreController genreController;
-        private PublisherController publisherController;
-        private SerieController serieController;
+        private int closeOperationId = 19;
 
 
         private void ShowMenu()
@@ -43,8 +38,10 @@ namespace bookRepository.Views
             Console.WriteLine("13. Add new book");
             Console.WriteLine("14. Update book");
             Console.WriteLine("15. Fetch book by ID");
-            Console.WriteLine("16. Delete book by ID");
-            Console.WriteLine("17. Close");
+            Console.WriteLine("16. Fetch book by Title");
+            Console.WriteLine("17. Sale book by ID");
+            Console.WriteLine("18. Delete book by ID");
+            Console.WriteLine("19. Close");
 
         }
         private void Input()
@@ -70,8 +67,9 @@ namespace bookRepository.Views
                     case 12: ListBooksByLanguage(); break;
                     case 13: Add(); break;
                     case 14: Update(); break;
-                    case 15: Fetch(); break;
-                    case 16: Delete(); break;
+                    case 15: FetchBookById(); break;
+                    case 16: FetchBookByTitle(); break;
+                    case 17: Delete(); break;
                     default:
                         break;
                 }
@@ -91,10 +89,12 @@ namespace bookRepository.Views
         }
         private void ListBooksByAuthor()
         {
+            Console.WriteLine("Enter author's ID: ");
+            int id = int.Parse(Console.ReadLine());
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 16) + "BOOK" + new string(' ', 16));
             Console.WriteLine(new string('-', 40));
-            var books = controller.GetAllBooks();
+            var books = controller.GetBooksByAuthor(id);
             foreach (var book in books)
             {
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
@@ -102,11 +102,13 @@ namespace bookRepository.Views
         }
         private void ListBooksByCategory()
         {
+            Console.WriteLine("Enter category's ID: ");
+            int id = int.Parse(Console.ReadLine());
 
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 16) + "BOOK" + new string(' ', 16));
             Console.WriteLine(new string('-', 40));
-            var books = controller.GetAllBooks();
+            var books = controller.GetBooksByCategory(id);
             foreach (var book in books)
             {
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
@@ -115,10 +117,12 @@ namespace bookRepository.Views
 
         private void ListBooksByGenre()
         {
+            Console.WriteLine("Enter genre's ID: ");
+            int id = int.Parse(Console.ReadLine());
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 16) + "BOOK" + new string(' ', 16));
             Console.WriteLine(new string('-', 40));
-            var books = controller.GetAllBooks();
+            var books = controller.GetBooksByGenre(id);
             foreach (var book in books)
             {
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
@@ -126,11 +130,12 @@ namespace bookRepository.Views
         }
         private void ListBooksBySerie()
         {
-
+            Console.WriteLine("Enter serie's ID: ");
+            int id = int.Parse(Console.ReadLine());
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 16) + "BOOK" + new string(' ', 16));
             Console.WriteLine(new string('-', 40));
-            var books = controller.GetAllBooks();
+            var books = controller.GetBooksBySerie(id);
             foreach (var book in books)
             {
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
@@ -139,11 +144,12 @@ namespace bookRepository.Views
 
         private void ListBooksByPublisher()
         {
-
+            Console.WriteLine("Enter publisher's ID: ");
+            int id = int.Parse(Console.ReadLine());
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 16) + "BOOK" + new string(' ', 16));
             Console.WriteLine(new string('-', 40));
-            var books = controller.GetAllBooks();
+            var books = controller.GetBooksByPublisher(id);
             foreach (var book in books)
             {
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
@@ -161,8 +167,6 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
-
-
 
         private void ListBooksWithBiggerPrice()
         {
@@ -203,10 +207,12 @@ namespace bookRepository.Views
 
         private void ListBooksByRating()
         {
+            Console.WriteLine("Enter rating: ");
+            int rating = int.Parse(Console.ReadLine());
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 16) + "BOOK" + new string(' ', 16));
             Console.WriteLine(new string('-', 40));
-            var books = controller.GetAllBooks();
+            var books = controller.GetBooksWithRating(rating);
             foreach (var book in books)
             {
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
@@ -215,34 +221,32 @@ namespace bookRepository.Views
 
         private void ListBooksByLanguage()
         {
+            Console.WriteLine("Enter language: ");
+            string language = Console.ReadLine();
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(new string(' ', 16) + "BOOK" + new string(' ', 16));
             Console.WriteLine(new string('-', 40));
-            var books = controller.GetAllBooks();
+            var books = controller.GetBooksWithLanguage(language);
             foreach (var book in books)
             {
-                Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
+                Console.WriteLine($"{book.BookId} {book.Title} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
-
-
-
-
 
         private void Add()
         {
             Book book = new Book();
             Console.WriteLine("Enter language: ");
             book.Language = Console.ReadLine();
-            Console.WriteLine("Enter author_id: ");
+            Console.WriteLine("Enter author's id: ");
             book.AuthorId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter category_id: ");
+            Console.WriteLine("Enter category's id: ");
             book.CategoryId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter genre_id: ");
+            Console.WriteLine("Enter genre's id: ");
             book.GenreId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter serie_id: ");
+            Console.WriteLine("Enter serie's id: ");
             book.SerieId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter publisher_id: ");
+            Console.WriteLine("Enter publisher's id: ");
             book.PublisherId = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter price: ");
             book.Price = int.Parse(Console.ReadLine());
@@ -269,7 +273,7 @@ namespace bookRepository.Views
             }
             else { Console.WriteLine("Book not found!"); }
         }
-        private void Fetch()
+        private void FetchBookById()
         {
             Console.WriteLine("Enter ID to fetch: ");
             int id = int.Parse(Console.ReadLine());
@@ -277,8 +281,20 @@ namespace bookRepository.Views
             if (book != null)
             {
                 Console.WriteLine(new string('-', 40));
-                Console.WriteLine("ID: " + book.BookId);
-                Console.WriteLine("Title: " + book.Title);
+                Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
+                Console.WriteLine(new string('-', 40));
+            }
+        }
+
+        private void FetchBookByTitle()
+        {
+            Console.WriteLine("Enter title to fetch: ");
+            string title = Console.ReadLine();
+            Book book = controller.GetBookByTitle(title);
+            if (book != null)
+            {
+                Console.WriteLine(new string('-', 40));
+                Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
                 Console.WriteLine(new string('-', 40));
             }
         }
@@ -289,14 +305,6 @@ namespace bookRepository.Views
             controller.DeleteBook(id);
             Console.WriteLine("Done.");
         }
-
-
-
-
-
-
-
-
 
     }
 }
