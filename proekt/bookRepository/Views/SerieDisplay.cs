@@ -1,11 +1,5 @@
 ﻿using bookRepository.Busines;
-using bookRepository.Data.Models;
 using bookRepository.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace bookRepository.Views
 {
@@ -18,6 +12,8 @@ namespace bookRepository.Views
         }
 
         private int closeOperationId = 7;
+
+        //Print menu
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -55,6 +51,7 @@ namespace bookRepository.Views
             } while (operation != closeOperationId);
         }
 
+        // //Get serie ID from the console and delete the serie with this ID
         private void Delete()
         {
             Console.WriteLine("Enter Id to delete: ");
@@ -63,6 +60,7 @@ namespace bookRepository.Views
             Console.WriteLine("Done.");
         }
 
+        //Get serie ID from the console and fetch serie with this ID
         private void FetchById()
         {
             Console.WriteLine("Enter ID to fetch: ");
@@ -77,10 +75,11 @@ namespace bookRepository.Views
             }
         }
 
+        //Get serie name from the console and fetch serie with this name
         private void FetchByName()
         {
             Console.WriteLine("Enter name to fetch: ");
-            string title=Console.ReadLine();
+            string title = Console.ReadLine();
             Serie serie = controller.GetSerieByTitle(title);
             if (serie != null)
             {
@@ -92,7 +91,7 @@ namespace bookRepository.Views
         }
 
 
-
+        //Get serie ID from the console, fetch serie with this ID and update it
         private void Update()
         {
             Console.WriteLine(new string("Enter ID to update: "));
@@ -107,6 +106,7 @@ namespace bookRepository.Views
             else { Console.WriteLine("Serie not found!"); }
         }
 
+        //Addet new serie to the database
         private void Add()
         {
             Serie serie = new Serie();
@@ -115,6 +115,7 @@ namespace bookRepository.Views
             controller.AddSerie(serie);
         }
 
+        //Fetch list of all series from the database
         private void List()
         {
             Console.WriteLine(new string('-', 40));
