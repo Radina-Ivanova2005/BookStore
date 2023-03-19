@@ -87,7 +87,7 @@ namespace bookRepository.Busines
             return books;
         }
 
-        public Book GetBooksWithTitle(string title)
+        public Book GetBookByTitle(string title)
         {
             var book = context.Books.FirstOrDefault(x => x.Title.Equals(title));
             return book;
