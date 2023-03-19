@@ -3,7 +3,7 @@ using bookRepository.Data.Models;
 
 namespace bookRepository.Busines
 {
-    public  class CategoryController
+    public class CategoryController
     {
         private BookShopContext context;
         public CategoryController(BookShopContext context)
@@ -22,7 +22,7 @@ namespace bookRepository.Busines
         //Fetch list of all categories in the database
         public List<Category> GetAllCategories()
         {
-            return context.Categories.OrderBy(c=>c.Name).ToList();
+            return context.Categories.OrderBy(c => c.Name).ToList();
         }
 
         //Fetch certain categori from the database by ID
