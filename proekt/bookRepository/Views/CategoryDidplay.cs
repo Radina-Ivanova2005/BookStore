@@ -1,22 +1,18 @@
 ﻿using bookRepository.Busines;
 using bookRepository.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace bookRepository.Views
 {
     public class CategoryDidplay
     {
-        private CategoryController controller= new CategoryController(new Data.BookShopContext());
-        public CategoryDidplay() 
+        private CategoryController controller = new CategoryController(new Data.BookShopContext());
+        public CategoryDidplay()
         {
             Input();
         }
 
         private int closeOperationId = 7;
+
+        //Print the menu
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -32,6 +28,7 @@ namespace bookRepository.Views
             Console.WriteLine("6. Delete category by ID");
             Console.WriteLine("7. Close");
         }
+
 
         private void Input()
         {
@@ -54,6 +51,7 @@ namespace bookRepository.Views
             } while (operation != closeOperationId);
         }
 
+        //Get category ID from the console and delete the category with this ID
         private void Delete()
         {
             Console.WriteLine("Enter Id to delete: ");
@@ -62,6 +60,8 @@ namespace bookRepository.Views
             Console.WriteLine("Done.");
         }
 
+
+        //Get category ID from the console and fetch category with this ID
         private void FetchById()
         {
             Console.WriteLine("Enter ID to fetch: ");
@@ -76,6 +76,7 @@ namespace bookRepository.Views
             }
         }
 
+        //Get category name from the console and fetch category with this name
         private void FetchByName()
         {
             Console.WriteLine("Enter name to fetch: ");
@@ -90,6 +91,7 @@ namespace bookRepository.Views
             }
         }
 
+        //Get category ID from the console, fetch category with this ID and update it
         private void Update()
         {
             Console.WriteLine(new string("Enter ID to update: "));
@@ -104,6 +106,7 @@ namespace bookRepository.Views
             else { Console.WriteLine("Category not found!"); }
         }
 
+        //Addet new category to the database
         private void Add()
         {
             Category category = new Category();
@@ -112,10 +115,11 @@ namespace bookRepository.Views
             controller.AddCategory(category);
         }
 
+        //Fetch list of all categories from the database
         private void List()
         {
             Console.WriteLine(new string('-', 40));
-            Console.WriteLine(new string(' ', 16) 
+            Console.WriteLine(new string(' ', 16)
                 + "CATEGORIES" + new string(' ', 16));
             Console.WriteLine(new string('-', 40));
             var categories = controller.GetAllCategories();
