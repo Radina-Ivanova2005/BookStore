@@ -19,9 +19,8 @@ namespace bookRepository.Models
         {      
         
         }
-        public Book(int bookId, string title, int autorId, int publisherId, int genreId, int categoryId, string language, int pages, decimal price, int rating, int count)
+        public Book(string title, int autorId, int publisherId, int genreId, int categoryId, string language, int pages, decimal price, int rating, int count)
         {
-            BookId = bookId;
             Title = title;
             AuthorId = autorId;
             PublisherId = publisherId;
@@ -34,9 +33,8 @@ namespace bookRepository.Models
             Count = count;
         }
 
-        public Book(int bookId, string title, int autorId,int serieId, int publisherId, int genreId, int categoryId, string language, int pages, decimal price, int rating, int count)
+        public Book(string title, int autorId,int serieId, int publisherId, int genreId, int categoryId, string language, int pages, decimal price, int rating, int count)
         {
-            BookId = bookId;
             Title = title;
             AuthorId = autorId;
             SerieId= serieId;
