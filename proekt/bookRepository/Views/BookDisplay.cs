@@ -1,7 +1,6 @@
 ﻿using bookRepository.Busines;
 using bookRepository.Models;
 
-
 namespace bookRepository.Views
 {
     public class BookDisplay
@@ -15,7 +14,7 @@ namespace bookRepository.Views
 
         private int closeOperationId = 19;
 
-
+        //Print the menu
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -69,13 +68,23 @@ namespace bookRepository.Views
                     case 14: Update(); break;
                     case 15: FetchBookById(); break;
                     case 16: FetchBookByTitle(); break;
-                    case 17: Delete(); break;
+                    case 17: SaleBookById(); break;
+                    case 18: Delete(); break;
                     default:
                         break;
                 }
             } while (operation != closeOperationId);
         }
+        //Sale book with given ID
+        private void SaleBookById()
+        {
+            Console.WriteLine("Enter ID to sale: ");
+            int id = int.Parse(Console.ReadLine());
+            controller.SaleBook(id);
+            Console.WriteLine("Done.");
+        }
 
+        //Fetch list of all books from the database
         private void List()
         {
             Console.WriteLine(new string('-', 40));
@@ -87,6 +96,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+        //Get author ID from the console, fetch list of books by author ID from the database
         private void ListBooksByAuthor()
         {
             Console.WriteLine("Enter author's ID: ");
@@ -100,6 +110,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+        //Get category ID from the console, fetch list of books by category ID from the database
         private void ListBooksByCategory()
         {
             Console.WriteLine("Enter category's ID: ");
@@ -114,7 +125,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
-
+        //Get genre ID from the console, fetch list of books by genre ID from the database
         private void ListBooksByGenre()
         {
             Console.WriteLine("Enter genre's ID: ");
@@ -128,6 +139,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+        //Get serie ID from the console, fetch list of books by serie ID from the database
         private void ListBooksBySerie()
         {
             Console.WriteLine("Enter serie's ID: ");
@@ -141,7 +153,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
-
+        //Get publisher ID from the console, fetch list of books by publisher ID from the database
         private void ListBooksByPublisher()
         {
             Console.WriteLine("Enter publisher's ID: ");
@@ -155,6 +167,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+        //Get price from the console, fetch list of books with less price from the database
         private void ListBooksWithLessPrice()
         {
             decimal price = int.Parse(Console.ReadLine());
@@ -167,7 +180,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
-
+        //Get price from the console, fetch list of books with bigger price from the database
         private void ListBooksWithBiggerPrice()
         {
             decimal price = int.Parse(Console.ReadLine());
@@ -180,6 +193,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+        //Get pages from the console, fetch list of books with less pages from the database
         private void ListBooksWithLessPages()
         {
             int pages = int.Parse(Console.ReadLine());
@@ -192,6 +206,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+        //Get pages from the console, fetch list of books with more pages from the database
         private void ListBooksWithMorePages()
         {
             int pages = int.Parse(Console.ReadLine());
@@ -204,7 +219,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
-
+        //Get rating from the console, fetch list of books by rating from the database
         private void ListBooksByRating()
         {
             Console.WriteLine("Enter rating: ");
@@ -218,7 +233,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
-
+        //Get language from the console, fetch list of books by language from the database
         private void ListBooksByLanguage()
         {
             Console.WriteLine("Enter language: ");
@@ -232,7 +247,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
-
+        //Added new book to the database
         private void Add()
         {
             Book book = new Book();
@@ -260,6 +275,7 @@ namespace bookRepository.Views
             book.Title = Console.ReadLine();
             controller.AddBook(book);
         }
+        //Get book ID from the console, fetch book with this ID and update it
         private void Update()
         {
             Console.WriteLine(new string("Enter ID to update: "));
@@ -273,6 +289,7 @@ namespace bookRepository.Views
             }
             else { Console.WriteLine("Book not found!"); }
         }
+        //Get book ID from the console and fetch book with this ID
         private void FetchBookById()
         {
             Console.WriteLine("Enter ID to fetch: ");
@@ -285,6 +302,7 @@ namespace bookRepository.Views
                 Console.WriteLine(new string('-', 40));
             }
         }
+        //Get book ID from the console and delete the book with this ID
         private void Delete()
         {
             Console.WriteLine("Enter ID to delete: ");
@@ -292,7 +310,7 @@ namespace bookRepository.Views
             controller.DeleteBook(id);
             Console.WriteLine("Done.");
         }
-
+        //Get book title from the console and fetch book with this title
         private void FetchBookByTitle()
         {
             Console.WriteLine("Enter title to fetch: ");
