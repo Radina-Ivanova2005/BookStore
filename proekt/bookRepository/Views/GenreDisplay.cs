@@ -13,8 +13,8 @@ namespace bookRepository.Views
             Input();
         }
 
-
         private int closeOperationId = 6;
+            //Print the menu
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -42,14 +42,15 @@ namespace bookRepository.Views
                     case 1: List(); break;
                     case 2: Add(); break;
                     case 3: Update(); break;
-                    case 4: Fetch(); break;
-                    case 5: Delete(); break;
+                    case 4: FetchById(); break;
+                    case 5: FetchByName(); break;
+                    case 6: Delete(); break;
                     default:
                         break;
                 }
             } while (operation != closeOperationId);
         }
-
+        //Fetch list of all genres from the database
         private void List()
         {
             Console.WriteLine(new string('-', 40));
@@ -61,7 +62,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{genre.Id} {genre.Name} ");
             }
         }
-
+        //Get genre ID from the console and delete the genre with this ID
         private void Delete()
         {
             Console.WriteLine("Enter Id to delete: ");
@@ -69,8 +70,8 @@ namespace bookRepository.Views
             controller.DeleteGenre(id);
             Console.WriteLine("Done.");
         }
-
-        private void Fetch()
+        //Get genre ID from the console and fetch genre with this ID
+        private void FetchById()
         {
             Console.WriteLine("Enter ID to fetch: ");
             int id = int.Parse(Console.ReadLine());
@@ -84,6 +85,21 @@ namespace bookRepository.Views
             }
         }
 
+        //Get genre name from the console and fetch genre with this name
+        private void FetchByName()
+        {
+            Console.WriteLine("Enter name to fetch: ");
+            string name = Console.ReadLine();
+            Genre genre = controller.GetGenreByName(name);
+            if (genre != null)
+            {
+                Console.WriteLine(new string('-', 40));
+                Console.WriteLine("ID: " + genre.Id);
+                Console.WriteLine("Name: " + genre.Name);
+                Console.WriteLine(new string('-', 40));
+            }
+        }
+        //Get genre ID from the console, fetch genre with this ID and update it
         private void Update()
         {
             Console.WriteLine(new string("Enter ID to update: "));
@@ -96,9 +112,9 @@ namespace bookRepository.Views
 
                 controller.UpdateGenre(genre);
             }
-            else { Console.WriteLine("Author not found!"); }
+            else { Console.WriteLine("Genre not found!"); }
         }
-
+        //Added new genre to the database
         private void Add()
         {
             Genre genre = new Genre();
