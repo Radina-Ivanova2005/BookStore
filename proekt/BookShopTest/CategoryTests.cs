@@ -140,34 +140,7 @@ namespace BookShop.Tests
             Assert.AreEqual(3, result.Id);
         }
 
-        //[TestCase]
-        //public void DeleteCategory_In_Database()
-        //{
-        //    var data = new List<Category>
-        //    {
-        //        new Category ("TestCategory1"){ Id = 1},
-        //        new Category ("TestCategory2"){ Id = 2},
-        //        new Category ("TestCategory3"){ Id = 3}
-        //    }.AsQueryable();
-
-        //    var mockSet = new Mock<DbSet<Category>>();
-        //    mockSet.As<IQueryable<Category>>().Setup(m => m.Provider).Returns(data.Provider);
-        //    mockSet.As<IQueryable<Category>>().Setup(m => m.Expression).Returns(data.Expression);
-        //    mockSet.As<IQueryable<Category>>().Setup(m => m.ElementType).Returns(data.ElementType);
-        //    mockSet.As<IQueryable<Category>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-        //    var mockContext = new Mock<BookShopContext>();
-        //    mockContext.Setup(c => c.Categories).Returns(mockSet.Object);
-
-        //    var controller = new CategoryController(mockContext.Object);
-        //    data.ToList().ForEach(x => controller.AddCategory(x));
-
-        //   controller.DeleteCategory(1);
-        //    Assert.AreEqual(2,controller.GetAllCategories().Count);
-
-
-
-        //}
+       
 
     }   
 

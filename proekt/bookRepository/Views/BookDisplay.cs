@@ -285,6 +285,13 @@ namespace bookRepository.Views
                 Console.WriteLine(new string('-', 40));
             }
         }
+        private void Delete()
+        {
+            Console.WriteLine("Enter ID to delete: ");
+            int id = int.Parse(Console.ReadLine());
+            controller.DeleteBook(id);
+            Console.WriteLine("Done.");
+        }
 
         private void FetchBookByTitle()
         {
@@ -298,13 +305,5 @@ namespace bookRepository.Views
                 Console.WriteLine(new string('-', 40));
             }
         }
-        private void Delete()
-        {
-            Console.WriteLine("Enter ID to delete: ");
-            int id = int.Parse(Console.ReadLine());
-            controller.DeleteBook(id);
-            Console.WriteLine("Done.");
-        }
-
     }
 }

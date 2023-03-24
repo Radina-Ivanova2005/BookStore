@@ -7,7 +7,7 @@ namespace bookRepository.Busines
     public class BookController
     {
         private BookShopContext context;
-        private AuthorController authorController;
+
         public BookController(BookShopContext context)
         {
             this.context = context;
