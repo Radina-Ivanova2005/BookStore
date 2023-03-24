@@ -418,22 +418,7 @@ namespace BookShopTest
             Assert.AreEqual(1, result[0].Rating);
         }
 
-        [TestCase]
-        public void Delete_Book_From_The_Database()
-        {
-            var mockSet = new Mock<DbSet<Book>>();
-
-            var mockContext = new Mock<BookShopContext>();
-            mockContext.Setup(m => m.Books).Returns(mockSet.Object);
-
-            var controller = new BookController(mockContext.Object);
-            controller.AddBook(new Book("TestBook", 1, 1, 1, 1, "TestLanguage", 1, 1, 1, 1));
-            controller.DeleteBook(1);
-
-            //mockSet.Verify(m => m.Add(It.IsAny<Book>()), Times.Once());
-          //  mockContext.Verify(m => m.SaveChanges(), Times.Once());
-
-            Assert.Pass();
-        }
+        
+        
     }
 }
