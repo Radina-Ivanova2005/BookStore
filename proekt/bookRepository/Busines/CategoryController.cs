@@ -56,12 +56,7 @@ namespace bookRepository.Busines
             this.context.SaveChanges();
         }
 
-        public void DeleteCategory(Category category)
-        {
-            var categoryItem = this.GetCategoryById(category.Id);
-            this.context.Categories.Remove(categoryItem);
-            this.context.SaveChanges();
-        }
+       
 
     }
 }
