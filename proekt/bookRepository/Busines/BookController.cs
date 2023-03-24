@@ -27,60 +27,60 @@ namespace bookRepository.Busines
         //Fetch list of all books in the database
         public List<Book> GetAllBooks()
         {
-            return context.Books.OrderBy(b => b.Title).ToList();
+            return context.Books.ToList();
         }
         //Fetch books from the database by author ID
         public List<Book> GetBooksByAuthor(int authorId)
         {
-            var books = context.Books.Where(x => x.AuthorId == authorId).OrderBy(b => b.Title).ToList();
+            var books = context.Books.Where(x => x.AuthorId == authorId).ToList();
             return books;
         }
         //Fetch books from the database by serie ID
         public List<Book> GetBooksBySerie(int serieId)
         {
-            var books = context.Books.Where(x => x.SerieId.Equals(serieId)).OrderBy(b => b.Title).ToList();
+            var books = context.Books.Where(x => x.SerieId.Equals(serieId)).ToList();
             return books;
         }
         //Fetch books from the database by publisher ID
         public List<Book> GetBooksByPublisher(int publisherId)
         {
-            var books = context.Books.Where(x => x.PublisherId.Equals(publisherId)).OrderBy(b => b.Title).ToList();
+            var books = context.Books.Where(x => x.PublisherId.Equals(publisherId)).ToList();
             return books;
         }
         //Fetch books from the database by genre ID
         public List<Book> GetBooksByGenre(int genreId)
         {
-            var books = context.Books.Where(x => x.GenreId.Equals(genreId)).OrderBy(b => b.Title).ToList();
+            var books = context.Books.Where(x => x.GenreId.Equals(genreId)).ToList();
             return books;
         }
         //Fetch books from the database by category ID
         public List<Book> GetBooksByCategory(int categoryId)
         {
-            var books = context.Books.Where(x => x.CategoryId.Equals(categoryId)).OrderBy(b => b.Title).ToList();
+            var books = context.Books.Where(x => x.CategoryId.Equals(categoryId)).ToList();
             return books;
         }
         //Fetch books with pages less than the given
         public List<Book> GetBooksWithLessPages(int pages)
         {
-            var books = context.Books.Where(x => x.Pages <= pages).OrderBy(b => b.Pages).ToList();
+            var books = context.Books.Where(x => x.Pages <= pages).ToList();
             return books;
         }
         //Fetch books with pages more than the given
         public List<Book> GetBooksWithMorePages(int pages)
         {
-            var books = context.Books.Where(x => x.Pages >= pages).OrderBy(b => b.Pages).ToList();
+            var books = context.Books.Where(x => x.Pages >= pages).ToList();
             return books;
         }
         //Fetch books with price less than the given
         public List<Book> GetBooksWithLessPrice(decimal price)
         {
-            var books = context.Books.Where(x => x.Price <= price).OrderBy(b => b.Price).ToList();
+            var books = context.Books.Where(x => x.Price <= price).ToList();
             return books;
         }
         //Fetch books with price bigger than the given
         public List<Book> GetBooksWithBiggerPrice(decimal price)
         {
-            var books = context.Books.Where(x => x.Price >= price).OrderBy(b => b.Price).ToList();
+            var books = context.Books.Where(x => x.Price >= price).ToList();
             return books;
         }
         //Fetch certain book from the database by title of the book
@@ -92,13 +92,13 @@ namespace bookRepository.Busines
         //Fetch books from the database by language 
         public List<Book> GetBooksWithLanguage(string language)
         {
-            var books = context.Books.Where(x => x.Language.Equals(language)).OrderBy(b => b.Title).ToList();
+            var books = context.Books.Where(x => x.Language.Equals(language)).ToList();
             return books;
         }
         //Fetch books from the database by rating 
         public List<Book> GetBooksWithRating(int rating)
         {
-            var books = context.Books.Where(x => x.Rating == rating).OrderBy(b => b.Title).ToList();
+            var books = context.Books.Where(x => x.Rating == rating).ToList();
             return books;
         }
         //Updated certain book from the database with new book characteristics

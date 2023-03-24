@@ -1,5 +1,6 @@
 ﻿using bookRepository.Busines;
 using bookRepository.Models;
+using System.Transactions;
 
 namespace bookRepository.Views
 {
@@ -251,28 +252,33 @@ namespace bookRepository.Views
         private void Add()
         {
             Book book = new Book();
-            Console.WriteLine("Enter language: ");
-            book.Language = Console.ReadLine();
+            Console.WriteLine("Enter title: ");
+            book.Title = Console.ReadLine();
             Console.WriteLine("Enter author's id: ");
             book.AuthorId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter category's id: ");
-            book.CategoryId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter genre's id: ");
-            book.GenreId = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter serie's id: ");
-            book.SerieId = int.Parse(Console.ReadLine());
+            int serieId = int.Parse(Console.ReadLine());
+            if (serieId==0)
+            {
+                book.SerieId = null;
+            }else book.SerieId = serieId;
             Console.WriteLine("Enter publisher's id: ");
             book.PublisherId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter price: ");
-            book.Price = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter genre's id: ");
+            book.GenreId = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter category's id: ");
+            book.CategoryId = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter language: ");
+            book.Language = Console.ReadLine();
             Console.WriteLine("Enter pages: ");
             book.Pages = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter price: ");
+            book.Price = int.Parse(Console.ReadLine());         
             Console.WriteLine("Enter rating: ");
             book.Rating = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter count:");
             book.Count = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter title: ");
-            book.Title = Console.ReadLine();
+          
             controller.AddBook(book);
         }
         //Get book ID from the console, fetch book with this ID and update it

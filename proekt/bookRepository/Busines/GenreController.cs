@@ -20,7 +20,7 @@ namespace bookRepository.Busines
         //Fetch list of all genre in the database
         public List<Genre> GetAllGenres()
         {
-            return context.Genres.OrderBy(g=>g.Name).ToList();
+            return context.Genres.ToList();
         }
         //Fetch certain genre from the database by ID
         public Genre GetGenreById(int id)

@@ -20,7 +20,7 @@ namespace bookRepository.Busines
         //Fetch list of all authors in the database
         public List<Author> GetAllAuthors()
         {
-            return context.Authors.OrderBy(a => a.Name).ToList();
+            return context.Authors.ToList();
         }
         //Fetch certain author from the database by ID
         public Author GetAuthorById(int id)

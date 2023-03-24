@@ -27,7 +27,7 @@ namespace bookRepository.Busines
         //Fetch list of series from the database
         public List<Serie> GetAllSeries()
         {
-            return context.Series.OrderBy(s=>s.Title).ToList();
+            return context.Series.ToList();
         }
 
         //Fetch certain sserie from the database by ID

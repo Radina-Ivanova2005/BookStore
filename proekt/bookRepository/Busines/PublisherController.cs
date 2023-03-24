@@ -27,7 +27,7 @@ namespace bookRepository.Busines
         //Fetch list of all publishers in the database
         public List<Publisher> GetAllPublishers()
         {
-            return context.Publishers.OrderBy(p => p.Name).ToList();
+            return context.Publishers.ToList();
         }
 
         //Fetch certain publisher from the database by ID

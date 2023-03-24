@@ -18,13 +18,18 @@ namespace bookRepository
 
         private void Data()
         {
-           
+            AddAuthors();
+            AddCategories();
+            AddGenres();
+            AddSeries();
+            AddPublisher();
+            AddBooks();
         }
 
         private void AddAuthors()
         {
             AuthorController authorController = new AuthorController(new Data.BookShopContext());
-            Author author1= new Author("Sarah J. Maas");
+            Author author1 = new Author("Sarah J. Maas");
             Author author2 = new Author("Stephanie Garber");
             Author author3 = new Author("Susan Ee");
             Author author4 = new Author("Richelle Mead");
@@ -32,18 +37,13 @@ namespace bookRepository
             authorController.AddAuthor(author2);
             authorController.AddAuthor(author3);
             authorController.AddAuthor(author4);
-            //Author author5 = new Author("Andrzej Sapkowski");
-            //Author author6 = new Author("John Bellairs");
-            //Author author7 = new Author("Soman Chainani");
-            //Author author8 = new Author("Marissa Meyer");
-            //Author author9 = new Author("Kerri Maniskalko");
-            //Author author10 = new Author("Jennifer L. Armentrout");
+
 
         }
 
         private void AddGenres()
         {
-            GenreController genreController=new GenreController(new Data.BookShopContext());
+            GenreController genreController = new GenreController(new Data.BookShopContext());
             Genre genre1 = new Genre("Horror");
             Genre genre2 = new Genre("Romance");
             Genre genre3 = new Genre("Fantasy");
@@ -56,6 +56,7 @@ namespace bookRepository
             Genre genre10 = new Genre("Antiutopia");
             genreController.AddGenre(genre1);
             genreController.AddGenre(genre2);
+            genreController.AddGenre(genre3);
             genreController.AddGenre(genre4);
             genreController.AddGenre(genre5);
             genreController.AddGenre(genre6);
@@ -67,7 +68,7 @@ namespace bookRepository
 
         private void AddSeries()
         {
-            SerieController serieController=new SerieController(new Data.BookShopContext());
+            SerieController serieController = new SerieController(new Data.BookShopContext());
             Serie serie1 = new Serie("Crescent City");
             Serie serie2 = new Serie("Vampire Academy");
             Serie serie3 = new Serie("Caraval");
@@ -81,7 +82,7 @@ namespace bookRepository
 
         private void AddCategories()
         {
-            CategoryController categoryController=new CategoryController(new Data.BookShopContext());
+            CategoryController categoryController = new CategoryController(new Data.BookShopContext());
             Category category1 = new Category("Comic");
             Category category2 = new Category("Novel");
             Category category3 = new Category("Novelette");
@@ -92,9 +93,9 @@ namespace bookRepository
             categoryController.AddCategory(category4);
         }
 
-        private void Publisher()
+        private void AddPublisher()
         {
-            PublisherController publisherController=new PublisherController(new Data.BookShopContext());
+            PublisherController publisherController = new PublisherController(new Data.BookShopContext());
             Publisher publisher1 = new Publisher("Penguin");
             Publisher publisher2 = new Publisher("Poradnia");
             Publisher publisher3 = new Publisher("Bloomsbury");
@@ -105,9 +106,9 @@ namespace bookRepository
             publisherController.AddPublisher(publisher4);
         }
 
-        private void Books()
+        private void AddBooks()
         {
-            BookController bookController=new BookController(new Data.BookShopContext());
+            BookController bookController = new BookController(new Data.BookShopContext());
             Book book1 = new Book("Angellfall", 3, 3, 4, 10, 2, "English", 290, 14.90M, 5, 3);
             Book book2 = new Book("World After", 3, 3, 4, 10, 2, "English", 321, 15.90M, 5, 5);
             Book book3 = new Book("End of Days", 3, 3, 4, 10, 2, "English", 345, 15.90M, 5, 2);
@@ -134,5 +135,5 @@ namespace bookRepository
             bookController.AddBook(book12);
 
         }
-    }   
+    }
 }
