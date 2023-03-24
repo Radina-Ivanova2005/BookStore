@@ -18,6 +18,8 @@ namespace bookRepository.Views
         }
 
         private int closeOperationId = 7;
+
+        //Print the menu
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -55,6 +57,7 @@ namespace bookRepository.Views
             } while (operation != closeOperationId);
         }
 
+        //Get publisher ID from the console and delete the publisher with this ID
         private void Delete()
         {
             Console.WriteLine("Enter Id to delete: ");
@@ -63,6 +66,7 @@ namespace bookRepository.Views
             Console.WriteLine("Done.");
         }
 
+        //Get publisher ID from the console and fetch pu publisher with this ID
         private void FetchById()
         {
             Console.WriteLine("Enter ID to fetch: ");
@@ -76,6 +80,9 @@ namespace bookRepository.Views
                 Console.WriteLine(new string('-', 40));
             }
         }
+
+
+        //Get publisher name from the console and fetch publisher with this name
         private void FetchByName()
         {
             Console.WriteLine("Enter name to fetch: ");
@@ -90,6 +97,7 @@ namespace bookRepository.Views
             }
         }
 
+        //Get publisher ID from the console, fetch publisher with this ID and update the it
         private void Update()
         {
             Console.WriteLine(new string("Enter ID to update: "));
@@ -104,6 +112,7 @@ namespace bookRepository.Views
             else { Console.WriteLine("Publisher not found!"); }
         }
 
+        //Addet new publisher to the database
         private void Add()
         {
             Publisher publisher = new Publisher();
@@ -112,6 +121,7 @@ namespace bookRepository.Views
             controller.AddPublisher(publisher);
         }
 
+        //Fetch list of all publishers from the database
         private void List()
         {
             Console.WriteLine(new string('-', 40));
