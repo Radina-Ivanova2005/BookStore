@@ -8,6 +8,8 @@ public class StartUp
 {
     private static void Main(string[] args)
     {
-        Display display = new Display();
+        AuthorDisplay authorDisplay = new AuthorDisplay();
+
+        //Display display = new Display();
     }
 }

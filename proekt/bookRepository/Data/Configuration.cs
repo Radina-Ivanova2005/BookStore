@@ -8,6 +8,6 @@ namespace bookRepository.Data
 {
     public class Configuration
     {
-        public const string ConnectionString = "Server=DESKTOP-M65PBDI\\SQLEXPRESS;Database=BookShop;Trusted_Connection=True;TrustServerCertificate=True;";
+        public const string ConnectionString = "Server=DESKTOP-G7R5T9J\\SQLEXPRESS;Database=name;Trusted_Connection=True;TrustServerCertificate=True;";
     }
 }
