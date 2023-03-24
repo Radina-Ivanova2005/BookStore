@@ -106,7 +106,7 @@ namespace bookRepository.Views
             else { Console.WriteLine("Category not found!"); }
         }
 
-        //Addet new category to the database
+        //Added new category to the database
         private void Add()
         {
             Category category = new Category();

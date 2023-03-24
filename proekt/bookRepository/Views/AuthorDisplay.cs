@@ -13,6 +13,7 @@ namespace bookRepository.Views
         }
 
         private int closeOperationId = 6;
+        //Print the menu
         private void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -40,14 +41,15 @@ namespace bookRepository.Views
                     case 1: List(); break;
                     case 2: Add(); break;
                     case 3: Update(); break;
-                    case 4: Fetch(); break;
-                    case 5: Delete(); break;
+                    case 4: FetchById(); break;
+                    case 5: FetchByName(); break;
+                    case 6: Delete(); break;
                     default:
                         break;
                 }
             } while (operation != closeOperationId);
         }
-
+        //Get author ID from the console and delete the author with this ID
         private void Delete()
         {
             Console.WriteLine("Enter Id to delete: ");
@@ -55,8 +57,8 @@ namespace bookRepository.Views
             controller.DeleteAuthor(id);
             Console.WriteLine("Done.");
         }
-
-        private void Fetch()
+        //Get author ID from the console and fetch author with this ID
+        private void FetchById()
         {
             Console.WriteLine("Enter ID to fetch: ");
             int id = int.Parse(Console.ReadLine());
@@ -69,7 +71,21 @@ namespace bookRepository.Views
                 Console.WriteLine(new string('-', 40));
             }
         }
-
+        //Get author name from the console and fetch author with this name
+        private void FetchByName()
+        {
+            Console.WriteLine("Enter name to fetch: ");
+            string name = Console.ReadLine();
+            Author author = controller.GetAuthorByName(name);
+            if (author != null)
+            {
+                Console.WriteLine(new string('-', 40));
+                Console.WriteLine("ID: " + author.Id);
+                Console.WriteLine("Name: " + author.Name);
+                Console.WriteLine(new string('-', 40));
+            }
+        }
+        //Get author ID from the console, fetch author with this ID and update it
         private void Update()
         {
             Console.WriteLine(new string("Enter ID to update: "));
@@ -83,7 +99,7 @@ namespace bookRepository.Views
             }
             else { Console.WriteLine("Author not found!"); }
         }
-
+        //Added new author to the database
         private void Add()
         {
             Author author = new Author();
@@ -91,7 +107,7 @@ namespace bookRepository.Views
             author.Name = Console.ReadLine();
             controller.AddAuthor(author);
         }
-
+        //Fetch list of all authors from the database
         private void List()
         {
             Console.WriteLine(new string('-', 40));
