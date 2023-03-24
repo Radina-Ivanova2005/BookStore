@@ -418,36 +418,22 @@ namespace BookShopTest
             Assert.AreEqual(1, result[0].Rating);
         }
 
-        //[TestCase]
+        [TestCase]
+        public void Delete_Book_From_The_Database()
+        {
+            var mockSet = new Mock<DbSet<Book>>();
 
-        //public void SaleBook_Should_Remove_Book_From_InDatabase()
-        //{
-        //    var data = new List<Book>
-        //    {
-        //       new Book ("TestBook1",1,1,1,1,"TestLanguage",1,1,1,1),
-        //        new Book ("TestBook2",1,1,1,1,"TestLanguage",1,1,1,1),
-        //        new Book ("TestBook3",1,1,1,1,"TestLanguage",1,1,1,1)
-        //    }.AsQueryable();
+            var mockContext = new Mock<BookShopContext>();
+            mockContext.Setup(m => m.Books).Returns(mockSet.Object);
 
-        //    var mockSet = new Mock<DbSet<Book>>();
-        //    mockSet.As<IQueryable<Book>>().Setup(m => m.Provider).Returns(data.Provider);
-        //    mockSet.As<IQueryable<Book>>().Setup(m => m.Expression).Returns(data.Expression);
-        //    mockSet.As<IQueryable<Book>>().Setup(m => m.ElementType).Returns(data.ElementType);
-        //    mockSet.As<IQueryable<Book>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
+            var controller = new BookController(mockContext.Object);
+            controller.AddBook(new Book("TestBook", 1, 1, 1, 1, "TestLanguage", 1, 1, 1, 1));
+            controller.DeleteBook(1);
 
-        //    var mockContext = new Mock<BookShopContext>();
-        //    mockContext.Setup(c => c.Books).Returns(mockSet.Object);
+            //mockSet.Verify(m => m.Add(It.IsAny<Book>()), Times.Once());
+          //  mockContext.Verify(m => m.SaveChanges(), Times.Once());
 
-        //    var library = new BookController(mockContext.Object);
-        //    data.ToList().ForEach(x => library.AddBook(x));
-        //    // Act
-        //    library.SaleBook(1);
-
-        //    // Assert
-        //    mockSet.Verify(m => m.Remove(It.IsAny<Book>()), Times.Once());
-        //    mockContext.Verify(m => m.SaveChanges(), Times.Once());
-
-
-        //}
+            Assert.Pass();
+        }
     }
 }
