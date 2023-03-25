@@ -4,9 +4,6 @@ using bookRepository.Models;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
-using NUnit.Framework.Internal.Execution;
-using System.Net;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BookShopTest
 {
