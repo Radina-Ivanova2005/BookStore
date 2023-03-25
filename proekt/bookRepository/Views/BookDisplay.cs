@@ -1,6 +1,6 @@
 ﻿using bookRepository.Busines;
 using bookRepository.Models;
-using System.Transactions;
+
 
 namespace bookRepository.Views
 {
@@ -282,7 +282,7 @@ namespace bookRepository.Views
             controller.AddBook(book);
         }
 
-        ////Get book ID from the console, fetch book with this ID and update it
+        //Get book ID from the console, fetch book with this ID and update it
         private void Update()
         {
             Console.WriteLine(new string("Enter ID to update: "));
