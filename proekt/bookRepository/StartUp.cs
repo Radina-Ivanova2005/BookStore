@@ -6,8 +6,8 @@ public class StartUp
 {
     private static void Main(string[] args)
     {
-        //AddData addData = new AddData();
+        AddData addData = new AddData();
 
-       Display display = new Display();
+      // Display display = new Display();
     }
 }

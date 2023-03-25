@@ -76,6 +76,7 @@ namespace bookRepository.Views
                 }
             } while (operation != closeOperationId);
         }
+
         //Sale book with given ID
         private void SaleBookById()
         {
@@ -97,6 +98,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get author ID from the console, fetch list of books by author ID from the database
         private void ListBooksByAuthor()
         {
@@ -111,6 +113,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get category ID from the console, fetch list of books by category ID from the database
         private void ListBooksByCategory()
         {
@@ -126,6 +129,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get genre ID from the console, fetch list of books by genre ID from the database
         private void ListBooksByGenre()
         {
@@ -140,6 +144,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get serie ID from the console, fetch list of books by serie ID from the database
         private void ListBooksBySerie()
         {
@@ -154,6 +159,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get publisher ID from the console, fetch list of books by publisher ID from the database
         private void ListBooksByPublisher()
         {
@@ -168,6 +174,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get price from the console, fetch list of books with less price from the database
         private void ListBooksWithLessPrice()
         {
@@ -181,6 +188,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get price from the console, fetch list of books with bigger price from the database
         private void ListBooksWithBiggerPrice()
         {
@@ -194,6 +202,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get pages from the console, fetch list of books with less pages from the database
         private void ListBooksWithLessPages()
         {
@@ -207,6 +216,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get pages from the console, fetch list of books with more pages from the database
         private void ListBooksWithMorePages()
         {
@@ -220,6 +230,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get rating from the console, fetch list of books by rating from the database
         private void ListBooksByRating()
         {
@@ -234,6 +245,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Language} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Get language from the console, fetch list of books by language from the database
         private void ListBooksByLanguage()
         {
@@ -248,6 +260,7 @@ namespace bookRepository.Views
                 Console.WriteLine($"{book.BookId} {book.Title} {book.Pages} {book.Price} {book.Rating} {book.Count} ");
             }
         }
+
         //Added new book to the database
         private void Add()
         {
@@ -282,7 +295,7 @@ namespace bookRepository.Views
             controller.AddBook(book);
         }
 
-        ////Get book ID from the console, fetch book with this ID and update it
+        //Get book ID from the console, fetch book with this ID and update it
         private void Update()
         {
             Console.WriteLine(new string("Enter ID to update: "));
@@ -331,6 +344,7 @@ namespace bookRepository.Views
                 Console.WriteLine(new string('-', 40));
             }
         }
+
         //Get book ID from the console and delete the book with this ID
         private void Delete()
         {
@@ -339,6 +353,7 @@ namespace bookRepository.Views
             controller.DeleteBook(id);
             Console.WriteLine("Done.");
         }
+
         //Get book title from the console and fetch book with this title
         private void FetchBookByTitle()
         {
