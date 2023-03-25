@@ -104,7 +104,7 @@ namespace bookRepository.Busines
         //Updated certain book from the database with new book characteristics
         public void UpdateBook(Book book)
         {
-            var bookItem = this.GetBookById(book.BookId);
+           var bookItem = this.GetBookById(book.BookId);         
             this.context.Entry(bookItem).CurrentValues.SetValues(book);
             this.context.SaveChanges();
         }

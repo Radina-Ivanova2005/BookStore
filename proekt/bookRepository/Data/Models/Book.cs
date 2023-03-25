@@ -48,6 +48,7 @@ namespace bookRepository.Models
             Count = count;           
         }
 
+       
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BookId { get; set; }

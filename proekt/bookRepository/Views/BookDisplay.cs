@@ -273,7 +273,7 @@ namespace bookRepository.Views
             Console.WriteLine("Enter pages: ");
             book.Pages = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter price: ");
-            book.Price = int.Parse(Console.ReadLine());         
+            book.Price = decimal.Parse(Console.ReadLine());         
             Console.WriteLine("Enter rating: ");
             book.Rating = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter count:");
@@ -281,7 +281,8 @@ namespace bookRepository.Views
           
             controller.AddBook(book);
         }
-        //Get book ID from the console, fetch book with this ID and update it
+
+        ////Get book ID from the console, fetch book with this ID and update it
         private void Update()
         {
             Console.WriteLine(new string("Enter ID to update: "));
@@ -291,10 +292,32 @@ namespace bookRepository.Views
             {
                 Console.WriteLine("Enter title: ");
                 book.Title = Console.ReadLine();
+                Console.WriteLine("Enter author's id: ");
+                book.AuthorId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter serie's id: ");
+                book.SerieId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter publisher's id: ");
+                book.PublisherId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter genre's id: ");
+                book.GenreId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter category's id: ");
+                book.CategoryId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter language: ");
+                book.Language = Console.ReadLine();
+                Console.WriteLine("Enter pages: ");
+                book.Pages = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter price: ");
+                book.Price = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter rating: ");
+                book.Rating = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter count:");
+                book.Count = int.Parse(Console.ReadLine());
+
                 controller.UpdateBook(book);
             }
             else { Console.WriteLine("Book not found!"); }
         }
+
         //Get book ID from the console and fetch book with this ID
         private void FetchBookById()
         {
